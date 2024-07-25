@@ -22,7 +22,7 @@ all : $(NAME)
 $(NAME): $(OBJ)
 	@$(MAKE) -C ./libft/ bonus
 	@$(MAKE) -C ./ft_printf/
-	gcc $(FLAGS) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME)
+	gcc $(FLAGS) $(OBJ) -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)

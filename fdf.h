@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:37 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/24 15:16:21 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:05:40 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # define RED "\e[0;31m"
 # define BLU "\e[0;34m"
 # define BRED "\e[1;31m"
+# define PI 3.14159265
 # include <math.h>
 # include <stdio.h>
-# include "mlx.h"
+# include "mlx/mlx.h"
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"

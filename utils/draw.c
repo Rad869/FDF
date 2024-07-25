@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:15:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/24 15:43:58 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:19:10 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@ float	module(float var)
 
 void	isometric(float *x, float *y, int z)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	float	x_tmp;
+	float	y_tmp;
+
+	x_tmp = *x;
+	y_tmp = *y;
+	*x = x_tmp * cos (PI / 4) + y_tmp * cos(PI / 4 + 2) - z * cos(PI / 4 - 2);
+	*y = x_tmp * sin (PI / 4) + y_tmp * sin(PI / 4 + 2) + z * sin(PI / 4 - 2);
 }
 
 void	breseham(float x, float y, float x1, float y1, t_fdf *data)
@@ -33,19 +38,22 @@ void	breseham(float x, float y, float x1, float y1, t_fdf *data)
 	int		maximum;
 	int		z;
 	int		z1;
-
-
+	
 	z = data->z_matrix[(int) y][(int) x];
 	z1 = data->z_matrix[(int) y1][(int) x1];
 	x *= data->ecart;
 	y *= data->ecart;
 	x1 *= data->ecart;
 	y1 *= data->ecart;
-	//z1 = data->z_matrix[(int) y1][(int) x1];
-	x_step = x1 - x;
-	y_step = y1 - y;
 	isometric(&x, &y, z);
 	isometric(&x1, &y1, z1);
+
+	x += 300;
+	y += 150;
+	x1 += 300;
+	y1 += 150;
+	x_step = x1 - x;
+	y_step = y1 - y;
 	maximum = MAX1(module(x_step), module(y_step));
 	x_step /= maximum;
 	y_step /= maximum;
