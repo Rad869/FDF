@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 06:21:01 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 10:32:49 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/27 21:13:25 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	convert_hexa(char *s)
 			p_error("Color error", "You entered an error format of color");
 		value += (tmp << i);
 		s++;
-		i -= 4; 
+		i -= 4;
 	}
 	return (value);
 }
@@ -101,7 +101,7 @@ void	fill_color(int *c_line, char *line)
 	char	*char_tmp;
 	int		i;
 
-	i= 0;
+	i = 0;
 	args = ft_split(line, ' ');
 	while (args[i])
 	{
@@ -130,18 +130,16 @@ void	read_entry(char	*fname, t_fdf *data)
 	while (i < data->len_row)
 	{
 		data->z_matrix[i] = (int *)malloc(sizeof(int) * (data->len_col + 1));
-		data->c_matrix[i] = (int *)malloc(sizeof(int) * (data->len_col + 1));
-		i++;
+		data->c_matrix[i++] = (int *)malloc(sizeof(int) * (data->len_col + 1));
 	}
 	i = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
 		fill_matrix(data->z_matrix[i], line);
-		fill_color(data->c_matrix[i], line);
+		fill_color(data->c_matrix[i++], line);
 		free(line);
 		line = get_next_line(fd);
-		i++;
 	}
 	free(line);
 	close(fd);

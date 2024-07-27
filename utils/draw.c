@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:15:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 15:27:56 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/27 21:00:16 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,23 @@ void	isometric(float *x, float *y, int z, t_fdf *data)
 	y_tmp = *y;
 	theta = data->theta;
 	phi = data->phi;
-	/*
-	*x = x_tmp * cos (PI / 4) + y_tmp * cos(PI / 4 + 2) - z * cos(PI / 4 - 2);
-	*y = x_tmp * sin (PI / 4) + y_tmp * sin(PI / 4 + 2) + z * sin(PI / 4 - 2);
-	*/
 	*x = x_tmp * cos(theta) - y_tmp * sin(theta);
 	*y = x_tmp * sin(theta)* cos(phi) + y_tmp * cos(theta)* cos(phi) - z * sin(phi);
 }
 
-static void	transform_origine(float *x, float *y, float *x1, float *y1, int *z,\
-	int *z1, t_fdf *data)
+void	transform_origine(float *x, float *y, int *z, t_fdf *data)
 {
 	compute_origine(data);
 	*z *= data->ecart;
-	*z1 *= data->ecart;
 	*x *= data->ecart;
-	*x1 *= data->ecart;
 	*y *= data->ecart;
-	*y1 *= data->ecart;
 	isometric(x, y, *z, data);
-	isometric(x1, y1, *z1, data);
+}
+
+void	transform_translation(float *x, float *y, t_fdf *data)
+{
 	*x += data->x_pos;
 	*y += data->y_pos;
-	*x1 += data->x_pos;
-	*y1 += data->y_pos;
-
 }
 
 void	breseham(float x, float y, float x1, float y1, t_fdf *data)
@@ -68,7 +60,10 @@ void	breseham(float x, float y, float x1, float y1, t_fdf *data)
 	
 	z = data->z_matrix[(int) y][(int) x];
 	z1 = data->z_matrix[(int) y1][(int) x1];
-	transform_origine(&x, &y, &x1, &y1, &z, &z1, data);
+	transform_origine(&x, &y, &z, data);
+	transform_origine(&x1, &y1, &z1, data);
+	transform_translation(&x, &y, data);
+	transform_translation(&x1, &y1, data);
 	x_step = x1 - x;
 	y_step = y1 - y;
 	maximum = MAX1(module(x_step), module(y_step));

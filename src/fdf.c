@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:00 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 14:55:58 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:52:39 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	main(int argc, char *argv[])
 
 	fdf = initialize_fdf(argc, argv);
 	draw(fdf);
+	printf("x_min = %d\tx_max = %d\ny_min = %d\ty_max = %d\n", fdf->x_min, fdf->x_max, fdf->y_min, fdf->y_max);
+	printf("ecart = %d\n", fdf->ecart);
 	//ft_printf("%d\t%d\n", fdf->x_pos, fdf->y_pos);
 	mlx_key_hook(fdf->win, key_handler, fdf);
 	mlx_loop(fdf->mlx);

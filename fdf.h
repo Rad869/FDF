@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:37 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 15:16:45 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:58:49 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ typedef struct	s_fdf
 	int		x_pos;
 	int		y_pos;
 	int		x_max;
+	int		x_min;
 	int		y_max;
+	int		y_min;
 	int		win_x;
 	int		win_y;
 	float	theta;
@@ -45,6 +47,7 @@ typedef struct	s_fdf
 
 t_fdf	*initialize_fdf(int argc, char *argv[]);
 void	compute_origine(t_fdf *data);
+void	transform_origine(float *x, float *y, int *z, t_fdf *data);
 //------------------------Read entry------------------------------------------
 void	read_entry(char	*fname, t_fdf *data);
 int		convert_hexa(char *s);
