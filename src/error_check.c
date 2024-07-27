@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:33:09 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/24 07:16:00 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:18:52 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_entry(int argc, char *argv[])
 		p_error("Argument extension", BLU"Tips :./fdf <filename>.fdf");
 }
 
-static void	check_r_c_maps(int	fd)
+static void	check_r_c_maps(int fd)
 {
 	char	**args;
 	char	*line;
@@ -28,7 +28,8 @@ static void	check_r_c_maps(int	fd)
 	int		tmp;
 
 	tmp = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		args = ft_split(line, ' ');
 		col = d_tab_len(args);
@@ -41,6 +42,7 @@ static void	check_r_c_maps(int	fd)
 			close(fd);
 			p_error("Maps", "Map doesn't have the same num of col");
 		}
+		line = get_next_line(fd);
 	}
 }
 
