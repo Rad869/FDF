@@ -3,6 +3,7 @@ NAME = fdf
 SRC = 	./get_next_line/get_next_line.c \
 		./utils/tab_utils.c \
 		./utils/draw.c \
+		./utils/color_utils.c \
 		./utils/utils_math.c \
 		./utils/initialize_fdf.c \
 		./utils/read_entry.c \

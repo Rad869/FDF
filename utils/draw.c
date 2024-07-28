@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:15:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/28 04:48:19 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/28 05:44:41 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,11 @@ void	breseham(point depart, point arriver, t_fdf *data)
 	float	x_step;
 	float	y_step;
 	int		maximum;
-	int		z;
-	int		z1;
 
-	z = data->z_matrix[(int) depart.y][(int) depart.x];
-	z1 = data->z_matrix[(int) arriver.y][(int) arriver.x];
-	transform_origine(&depart.x, &depart.y, &z, data);
-	transform_origine(&arriver.x, &arriver.y, &z1, data);
+	depart.z = data->z_matrix[(int) depart.y][(int) depart.x];
+	arriver.z = data->z_matrix[(int) arriver.y][(int) arriver.x];
+	transform_origine(&depart.x, &depart.y, &depart.z, data);
+	transform_origine(&arriver.x, &arriver.y, &arriver.z, data);
 	transform_translation(&depart.x, &depart.y, data);
 	transform_translation(&arriver.x, &arriver.y, data);
 	x_step = arriver.x - depart.x;
@@ -64,7 +62,7 @@ void	breseham(point depart, point arriver, t_fdf *data)
 	y_step /= maximum;
 	while ((int)(depart.x - arriver.x) || (int)(depart.y - arriver.y))
 	{
-		mlx_pixel_put(data->mlx, data->win, depart.x, depart.y, 0xffffff);
+		mlx_pixel_put(data->mlx, data->win, depart.x, depart.y, depart.color);
 		depart.x += x_step;
 		depart.y += y_step;
 	}
@@ -85,12 +83,16 @@ void	draw(t_fdf *data)
 			{
 				arriver.x = depart.x + 1;
 				arriver.y = depart.y;
+				depart.color = data->c_matrix[(int) depart.y][(int) depart.x];
+				arriver.color = data->c_matrix[(int) depart.y][(int) arriver.x];
 				breseham(depart, arriver, data);
 			}
 			if (depart.y < data->len_row - 1)
 			{
 				arriver.x = depart.x;
 				arriver.y = depart.y + 1;
+				depart.color = data->c_matrix[(int) depart.y][(int) depart.x];
+				arriver.color = data->c_matrix[(int) arriver.y][(int) depart.x];
 				breseham(depart, arriver, data);
 			}
 			depart.x++;

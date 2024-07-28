@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:37 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 22:22:36 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/28 05:36:18 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct	s_point
 {
 	float	x;
 	float	y;
+	int		z;
+	int		color;
 }				point;
 
 
