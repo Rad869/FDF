@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 22:25:36 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 21:44:33 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/28 05:00:04 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	compute_origine(t_fdf *data)
 	data->y_pos += (data->win_y - (data->y_max - data->y_min)) / 2;
 }
 
-void	choose_min_max(float x, float y, t_fdf *data)
+static void	choose_min_max(float x, float y, t_fdf *data)
 {
 	if (x < data->x_min)
 		data->x_min = x;
@@ -36,7 +36,7 @@ void	choose_min_max(float x, float y, t_fdf *data)
 		data->y_max = y;
 }
 
-void	get_min_max(t_fdf *data)
+static void	get_min_max(t_fdf *data)
 {
 	float	x;
 	float	y;
