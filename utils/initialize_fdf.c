@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 22:25:36 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 21:09:23 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/27 21:44:33 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_fdf	*initialize_fdf(int argc, char *argv[])
 	value->y_max = 0;
 	compute_ecart(value);
 	compute_origine(value);
-	value->win_y -= 100;
+	value->win_y -= 50;
 	value->win = mlx_new_window(value->mlx, value->win_x, value->win_y, "fdf");
 	return (value);
 }

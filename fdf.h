@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:37 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 20:58:49 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/27 22:22:36 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ typedef struct	s_fdf
 	void	*win;
 }				t_fdf;
 
+typedef struct	s_point
+{
+	float	x;
+	float	y;
+}				point;
+
+
+//-----------------------Math------------------------------------------------
+float   max(float a, float b);
+float	module(float var);
+//---------------------------------------------------------------------------
 t_fdf	*initialize_fdf(int argc, char *argv[]);
 void	compute_origine(t_fdf *data);
 void	transform_origine(float *x, float *y, int *z, t_fdf *data);
@@ -52,7 +63,7 @@ void	transform_origine(float *x, float *y, int *z, t_fdf *data);
 void	read_entry(char	*fname, t_fdf *data);
 int		convert_hexa(char *s);
 //------------------------Draw------------------------------------------------
-void	breseham(float x, float y, float x1, float y1, t_fdf *data);
+void	breseham(point depart, point arriver, t_fdf *data);
 void	isometric(float *x, float *y, int z, t_fdf *data);
 void	draw(t_fdf *data);
 //------------------------Error check------------------------------------------
