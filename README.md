@@ -7,7 +7,7 @@ For the installation, open your terminal and type
 
 ```bash
 git clone https://github.com/Rad869/FDF.git
-cd Push_swap
+cd FDF
 make all
 ./fdf 42.fdf
 ```
