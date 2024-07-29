@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:37 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/28 05:36:18 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/28 19:03:51 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct	s_point
 	int		color;
 }				point;
 
-
+int		gradient_color(int col_dep, int col_arr, float percent);
 //-----------------------Math------------------------------------------------
 float   max(float a, float b);
 float	module(float var);

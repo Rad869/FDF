@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:15:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/28 05:44:41 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:08:24 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	breseham(point depart, point arriver, t_fdf *data)
 	y_step /= maximum;
 	while ((int)(depart.x - arriver.x) || (int)(depart.y - arriver.y))
 	{
-		mlx_pixel_put(data->mlx, data->win, depart.x, depart.y, depart.color);
+		mlx_pixel_put(data->mlx, data->win, depart.x, depart.y, \
+			gradient_color(depart.color, arriver.color, \
+			module(arriver.x - depart.x) / (x_step * maximum)));
 		depart.x += x_step;
 		depart.y += y_step;
 	}
@@ -79,20 +81,19 @@ void	draw(t_fdf *data)
 		depart.x = 0;
 		while (depart.x < data->len_col)
 		{
+			depart.color = data->c_matrix[(int) depart.y][(int) depart.x];
 			if (depart.x < data->len_col - 1)
 			{
 				arriver.x = depart.x + 1;
 				arriver.y = depart.y;
-				depart.color = data->c_matrix[(int) depart.y][(int) depart.x];
-				arriver.color = data->c_matrix[(int) depart.y][(int) arriver.x];
+				arriver.color = data->c_matrix[(int) arriver.y][(int) arriver.x];
 				breseham(depart, arriver, data);
 			}
 			if (depart.y < data->len_row - 1)
 			{
 				arriver.x = depart.x;
 				arriver.y = depart.y + 1;
-				depart.color = data->c_matrix[(int) depart.y][(int) depart.x];
-				arriver.color = data->c_matrix[(int) arriver.y][(int) depart.x];
+				arriver.color = data->c_matrix[(int) arriver.y][(int) arriver.x];
 				breseham(depart, arriver, data);
 			}
 			depart.x++;
