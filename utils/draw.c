@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:15:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 11:23:00 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:51:59 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	isometric(float *x, float *y, int z, t_fdf *data)
 		y_tmp * cos(theta) * cos(phi) - z * sin(phi);
 }
 
-void	breseham(point depart, point arr, t_fdf *data)
+void	breseham(t_point depart, t_point arr, t_fdf *data)
 {
 	float	x_step;
 	float	y_step;
@@ -55,9 +55,9 @@ void	breseham(point depart, point arr, t_fdf *data)
 	}
 }
 
-void	set_arriver(point depart, float x, float y, t_fdf *data)
+void	set_arriver(t_point depart, float x, float y, t_fdf *data)
 {
-	point	arr;
+	t_point	arr;
 
 	arr.x = x;
 	arr.y = y;
@@ -67,7 +67,7 @@ void	set_arriver(point depart, float x, float y, t_fdf *data)
 
 void	draw(t_fdf *data)
 {
-	point	depart;
+	t_point	depart;
 
 	depart.y = 0;
 	while (depart.y < data->len_row)

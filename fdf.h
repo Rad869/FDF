@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:37 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 11:15:21 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:53:01 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 
-typedef struct	s_fdf
+typedef struct s_fdf
 {
 	int		len_col;
 	int		len_row;
@@ -50,19 +50,18 @@ typedef struct	s_fdf
 	int		endian;
 }				t_fdf;
 
-typedef struct	s_point
+typedef struct s_point
 {
 	float	x;
 	float	y;
 	int		z;
 	int		color;
-}				point;
-
+}				t_point;
 
 void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color);
 int		gradient_color(int col_dep, int col_arr, float percent);
 //-----------------------Math------------------------------------------------
-float   max(float a, float b);
+float	max(float a, float b);
 float	module(float var);
 int		get_col(char *fname);
 int		get_row(char *fname);
@@ -78,14 +77,14 @@ void	transform_origine(float *x, float *y, int *z, t_fdf *data);
 void	read_entry(char	*fname, t_fdf *data);
 int		convert_hexa(char *s);
 //------------------------Draw------------------------------------------------
-void	breseham(point depart, point arr, t_fdf *data);
+void	breseham(t_point depart, t_point arr, t_fdf *data);
 void	isometric(float *x, float *y, int z, t_fdf *data);
 void	draw(t_fdf *data);
 //------------------------Error check------------------------------------------
 void	p_error(char *title, char *err);
 void	check_maps(int argc, char *argv[]);
 //------------------------Tabular utils----------------------------------------
-int 	d_tab_len(char  **argv);
-void    tab_free(char **args);
+int		d_tab_len(char **argv);
+void	tab_free(char **args);
 
 #endif

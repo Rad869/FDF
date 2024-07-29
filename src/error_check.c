@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:33:09 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/25 22:18:52 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:16:42 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	check_r_c_maps(int fd)
 	}
 }
 
+void	check_char_entry(int fd);
+
 void	check_maps(int argc, char *argv[])
 {
 	int	fd;
@@ -54,6 +56,7 @@ void	check_maps(int argc, char *argv[])
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		p_error("Opening the file", "Can't open the file given in argument");
+	check_char_entry(fd);
 	check_r_c_maps(fd);
 	close(fd);
 }
