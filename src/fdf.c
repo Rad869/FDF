@@ -6,12 +6,11 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:00 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/27 19:52:39 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 06:25:14 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-#include <stdio.h>
 
 int	key_handler(int key, t_fdf *data)
 {
@@ -75,6 +74,9 @@ int	key_handler(int key, t_fdf *data)
 		ft_printf("%d\n", key);
 	return (0);
 }
+int	get_blue(int color);
+int	get_green(int color);
+int	get_red(int color);
 
 int	main(int argc, char *argv[])
 {
@@ -82,9 +84,15 @@ int	main(int argc, char *argv[])
 
 	fdf = initialize_fdf(argc, argv);
 	draw(fdf);
-	printf("x_min = %d\tx_max = %d\ny_min = %d\ty_max = %d\n", fdf->x_min, fdf->x_max, fdf->y_min, fdf->y_max);
-	printf("ecart = %d\n", fdf->ecart);
-	//ft_printf("%d\t%d\n", fdf->x_pos, fdf->y_pos);
+	for(int j = 0; j < fdf->len_row; j++)
+	{
+		for(int i = 0; i <fdf->len_col; i++)
+		{
+			ft_printf("%d", fdf->c_matrix[j][i]);
+			ft_printf("(red : %d\tgreen : %d\tblue : %d)\t", get_red(fdf->c_matrix[j][i]), get_green(fdf->c_matrix[j][i]), get_blue(fdf->c_matrix[j][i]));
+		}
+		ft_printf("\n");
+	}
 	mlx_key_hook(fdf->win, key_handler, fdf);
 	mlx_loop(fdf->mlx);
 }

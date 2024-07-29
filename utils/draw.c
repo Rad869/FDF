@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:15:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/28 22:08:24 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 06:48:40 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	breseham(point depart, point arriver, t_fdf *data)
 	{
 		mlx_pixel_put(data->mlx, data->win, depart.x, depart.y, \
 			gradient_color(depart.color, arriver.color, \
-			module(arriver.x - depart.x) / (x_step * maximum)));
+			1 - module(arriver.x - depart.x) / (x_step * maximum)));
 		depart.x += x_step;
 		depart.y += y_step;
 	}
