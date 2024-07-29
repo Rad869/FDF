@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:15:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 06:48:40 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:23:00 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,52 +28,46 @@ void	isometric(float *x, float *y, int z, t_fdf *data)
 		y_tmp * cos(theta) * cos(phi) - z * sin(phi);
 }
 
-void	transform_origine(float *x, float *y, int *z, t_fdf *data)
-{
-	compute_origine(data);
-	*z *= data->ecart;
-	*x *= data->ecart;
-	*y *= data->ecart;
-	isometric(x, y, *z, data);
-}
-
-void	transform_translation(float *x, float *y, t_fdf *data)
-{
-	*x += data->x_pos;
-	*y += data->y_pos;
-}
-
-void	breseham(point depart, point arriver, t_fdf *data)
+void	breseham(point depart, point arr, t_fdf *data)
 {
 	float	x_step;
 	float	y_step;
 	int		maximum;
 
 	depart.z = data->z_matrix[(int) depart.y][(int) depart.x];
-	arriver.z = data->z_matrix[(int) arriver.y][(int) arriver.x];
+	arr.z = data->z_matrix[(int) arr.y][(int) arr.x];
 	transform_origine(&depart.x, &depart.y, &depart.z, data);
-	transform_origine(&arriver.x, &arriver.y, &arriver.z, data);
+	transform_origine(&arr.x, &arr.y, &arr.z, data);
 	transform_translation(&depart.x, &depart.y, data);
-	transform_translation(&arriver.x, &arriver.y, data);
-	x_step = arriver.x - depart.x;
-	y_step = arriver.y - depart.y;
+	transform_translation(&arr.x, &arr.y, data);
+	x_step = arr.x - depart.x;
+	y_step = arr.y - depart.y;
 	maximum = max(module(x_step), module(y_step));
 	x_step /= maximum;
 	y_step /= maximum;
-	while ((int)(depart.x - arriver.x) || (int)(depart.y - arriver.y))
+	while ((int)(depart.x - arr.x) || (int)(depart.y - arr.y))
 	{
-		mlx_pixel_put(data->mlx, data->win, depart.x, depart.y, \
-			gradient_color(depart.color, arriver.color, \
-			1 - module(arriver.x - depart.x) / (x_step * maximum)));
+		my_mlx_pixel_put(data, depart.x, depart.y, \
+			gradient_color(depart.color, arr.color, \
+			1 - (arr.x - depart.x) / (x_step * maximum)));
 		depart.x += x_step;
 		depart.y += y_step;
 	}
 }
 
+void	set_arriver(point depart, float x, float y, t_fdf *data)
+{
+	point	arr;
+
+	arr.x = x;
+	arr.y = y;
+	arr.color = data->c_matrix[(int) arr.y][(int) arr.x];
+	breseham(depart, arr, data);
+}
+
 void	draw(t_fdf *data)
 {
 	point	depart;
-	point	arriver;
 
 	depart.y = 0;
 	while (depart.y < data->len_row)
@@ -83,21 +77,12 @@ void	draw(t_fdf *data)
 		{
 			depart.color = data->c_matrix[(int) depart.y][(int) depart.x];
 			if (depart.x < data->len_col - 1)
-			{
-				arriver.x = depart.x + 1;
-				arriver.y = depart.y;
-				arriver.color = data->c_matrix[(int) arriver.y][(int) arriver.x];
-				breseham(depart, arriver, data);
-			}
+				set_arriver(depart, depart.x + 1, depart.y, data);
 			if (depart.y < data->len_row - 1)
-			{
-				arriver.x = depart.x;
-				arriver.y = depart.y + 1;
-				arriver.color = data->c_matrix[(int) arriver.y][(int) arriver.x];
-				breseham(depart, arriver, data);
-			}
+				set_arriver(depart, depart.x, depart.y + 1, data);
 			depart.x++;
 		}
 		depart.y++;
+		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
 }

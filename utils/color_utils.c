@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 05:11:10 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 06:49:38 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:11:34 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ int	set_color(int red, int green, int blue)
 	int	value;
 
 	value = 0;
-	value = (((red << 16) & 0xff0000) |\
-		((green << 8) & 0x00ff00) |\
+	value = (((red << 16) & 0xff0000) | \
+		((green << 8) & 0x00ff00) | \
 		(blue & 0x0000ff));
 	return (value);
 }
 
-#include <stdio.h>
 int	gradient_color(int col_dep, int col_arr, float percent)
 {
 	int	dif_red;

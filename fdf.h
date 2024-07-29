@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:37 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/28 19:03:51 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:15:21 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ typedef struct	s_fdf
 	int		**c_matrix;
 	void	*mlx;
 	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }				t_fdf;
 
 typedef struct	s_point
@@ -53,10 +58,18 @@ typedef struct	s_point
 	int		color;
 }				point;
 
+
+void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color);
 int		gradient_color(int col_dep, int col_arr, float percent);
 //-----------------------Math------------------------------------------------
 float   max(float a, float b);
 float	module(float var);
+int		get_col(char *fname);
+int		get_row(char *fname);
+//-----------------------Transformation--------------------------------------
+void	transform_origine(float *x, float *y, int *z, t_fdf *data);
+void	transform_translation(float *x, float *y, t_fdf *data);
+int		convert_hexa(char *s);
 //---------------------------------------------------------------------------
 t_fdf	*initialize_fdf(int argc, char *argv[]);
 void	compute_origine(t_fdf *data);
@@ -65,7 +78,7 @@ void	transform_origine(float *x, float *y, int *z, t_fdf *data);
 void	read_entry(char	*fname, t_fdf *data);
 int		convert_hexa(char *s);
 //------------------------Draw------------------------------------------------
-void	breseham(point depart, point arriver, t_fdf *data);
+void	breseham(point depart, point arr, t_fdf *data);
 void	isometric(float *x, float *y, int z, t_fdf *data);
 void	draw(t_fdf *data);
 //------------------------Error check------------------------------------------

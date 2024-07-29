@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 22:25:36 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/28 05:00:04 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:48:44 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ t_fdf	*initialize_fdf(int argc, char *argv[])
 	read_entry(argv[1], value);
 	value->mlx = mlx_init();
 	mlx_get_screen_size(value->mlx, &value->win_x, &value->win_y);
+	value->img = mlx_new_image(value->mlx, value->win_x, value->win_y);
+	value->addr = mlx_get_data_addr(value->img, &value->bits_per_pixel, \
+		&value->line_length, &value->endian);
 	value->theta = PI / 3;
 	value->phi = PI / 3;
 	value->x_min = value->win_x;

@@ -3,6 +3,7 @@ NAME = fdf
 SRC = 	./get_next_line/get_next_line.c \
 		./utils/tab_utils.c \
 		./utils/draw.c \
+		./utils/transformation.c \
 		./utils/color_utils.c \
 		./utils/utils_math.c \
 		./utils/initialize_fdf.c \
@@ -23,6 +24,7 @@ all : $(NAME)
 
 
 $(NAME): $(OBJ)
+	@$(MAKE) -C ./mlx/
 	@$(MAKE) -C ./libft/ bonus
 	@$(MAKE) -C ./ft_printf/
 	gcc $(FLAGS) $(OBJ) -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME)
