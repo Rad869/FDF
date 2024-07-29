@@ -6,7 +6,7 @@ This is the first graphical project in 42 school.
 For the installation, open your terminal and type
 
 ```bash
-git clone https://github.com/Rad869/Push_swap.git
+git clone https://github.com/Rad869/FDF.git
 cd Push_swap
 make all
 ./fdf 42.fdf
