@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 05:47:37 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 11:53:01 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 20:28:29 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	draw(t_fdf *data);
 //------------------------Error check------------------------------------------
 void	p_error(char *title, char *err);
 void	check_maps(int argc, char *argv[]);
+void	check_char_entry(int fd);
+void	check_empty(char *fname);
 //------------------------Tabular utils----------------------------------------
 int		d_tab_len(char **argv);
 void	tab_free(char **args);

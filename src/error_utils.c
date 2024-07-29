@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:55:10 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 12:16:57 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 20:31:16 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,8 @@ void	check_char_entry(int fd)
 		i = 0;
 		while (line[i])
 		{
-			if (ft_isdigit((int) line[i]))
-				i++;
-			else if (ft_strchr("0 ,xabcdefABCDEF", (int) line[i]))
-				i++;
-			else if (line[i] == '\n' || line[i] == '\t')
+			if (ft_isdigit(line[i]) || line[i] == '\t' || line[i] == '\n' || \
+				ft_strchr("0 -,xabcdefABCDEF", (int) line[i]))
 				i++;
 			else
 			{
@@ -53,4 +50,14 @@ void	check_char_entry(int fd)
 		line = get_next_line(fd);
 	}
 	free(line);
+}
+
+void	check_empty(char *fname)
+{
+	int	col;
+
+	col = get_col(fname);
+	printf("%d\n", col);
+	if (col == 0)
+		p_error("Maps Error", "Empty file entered");
 }

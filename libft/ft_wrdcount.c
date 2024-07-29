@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 06:28:01 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 11:46:20 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/29 20:33:48 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_wrdcount(char *line)
 		return (0);
 	while (line[i])
 	{
-		while ((line[i] == ' ' || line[i] == '\t') && line[i])
+		while ((line[i] == ' ' || line[i] == '\t' || line[i] == '\n') \
+			&& line[i])
 			i++;
 		if (line[i])
 		{
