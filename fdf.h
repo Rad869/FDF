@@ -18,7 +18,6 @@
 # define BRED "\e[1;31m"
 # define PI 3.14159265
 # include <math.h>
-# include <stdio.h>
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"

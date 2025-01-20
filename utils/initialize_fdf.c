@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 22:25:36 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 19:41:51 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/30 12:59:40 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	compute_origine(t_fdf *data)
 	if (data->x_min < 0)
 		data->x_pos = -data->x_min;
 	if (data->y_min < 0)
-		data->y_pos = -data->y_min;
+		data->y_pos = -data->y_min + 20;
 	data->x_pos += (data->win_x - (data->x_max - data->x_min)) / 2;
 	data->y_pos += (data->win_y - (data->y_max - data->y_min)) / 2;
 }
@@ -73,6 +73,7 @@ void	compute_ecart(t_fdf *data)
 		data->ecart++;
 		get_min_max(data);
 	}
+	data->ecart--;
 	get_min_max(data);
 }
 

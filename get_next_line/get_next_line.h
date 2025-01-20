@@ -6,14 +6,14 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 08:15:05 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/23 06:22:09 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/08/04 07:31:31 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 # include <stdlib.h>
 # include <unistd.h>

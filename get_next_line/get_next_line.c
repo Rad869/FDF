@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 08:21:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/23 06:21:59 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/08/04 08:16:49 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*store_static_var(char *value)
 		return (stock);
 	while (value[i] != '\n' && value[i] != '\0')
 		i++;
-	if (value[i] == '\n')
+	if (value[i] == '\n' && value[i + 1])
 	{
 		stock = ft_substr(value, i + 1, ft_strlen(value) - i);
 		value[i + 1] = 0;

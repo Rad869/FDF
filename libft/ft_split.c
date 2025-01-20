@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrabeari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 07:12:14 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/03/10 10:21:33 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/08/04 08:21:58 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_countword(char const *s, char c)
 	i = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] == c || s[i] == '\n')
 			i++;
 		if (s[i] != c && s[i])
 		{

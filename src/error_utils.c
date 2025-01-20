@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:55:10 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 20:31:16 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:04:08 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	check_empty(char *fname)
 	int	col;
 
 	col = get_col(fname);
-	printf("%d\n", col);
 	if (col == 0)
 		p_error("Maps Error", "Empty file entered");
 }

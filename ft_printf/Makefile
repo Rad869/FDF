@@ -6,7 +6,7 @@
 #    By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/13 12:36:11 by rrabeari          #+#    #+#              #
-#    Updated: 2024/07/23 05:41:32 by rrabeari         ###   ########.fr        #
+#    Updated: 2024/07/30 13:39:26 by rrabeari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,4 +38,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all $(NAME) clean fclean re
+.PHONY : all clean fclean re

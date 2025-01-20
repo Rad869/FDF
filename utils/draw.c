@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:15:08 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 11:51:59 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:26:36 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void	draw(t_fdf *data)
 			depart.x++;
 		}
 		depart.y++;
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }

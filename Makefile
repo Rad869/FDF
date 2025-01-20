@@ -20,14 +20,14 @@ OBJ = $(SRC:%.c=%.o)
 all : $(NAME)
 
 %.o: %.c
-	gcc $(FLAGS) -I/usr/include -Iget_next_line -Imlx_linux -O3 -c $< -o $@
+	@gcc $(FLAGS) -I/usr/include -Iget_next_line -Imlx_linux -O3 -c $< -o $@
 
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C ./mlx/
 	@$(MAKE) -C ./libft/ bonus
 	@$(MAKE) -C ./ft_printf/
-	gcc $(FLAGS) $(OBJ) -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME)
+	@gcc $(FLAGS) $(OBJ) -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz ./libft/libft.a ./ft_printf/libftprintf.a -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
@@ -40,3 +40,5 @@ fclean: clean
 	@$(MAKE) -C ./ft_printf/ fclean
 
 re: fclean all
+
+.PHONY : re all clean fclean

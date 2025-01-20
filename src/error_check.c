@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:33:09 by rrabeari          #+#    #+#             */
-/*   Updated: 2024/07/29 20:29:27 by rrabeari         ###   ########.fr       */
+/*   Updated: 2024/08/04 07:34:18 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static void	check_entry(int argc, char *argv[])
 	if (argc < 2 || argc > 2)
 		p_error("Number of arguments", "Argument less or More than expected");
 	else if ((ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".fdf", 4)) != 0)
-		p_error("Argument extension", BLU"Tips :./fdf <filename>.fdf");
+		p_error("Argument extension", "Should be :./fdf <filename>.fdf");
+	else if (ft_strlen(argv[1]) <= 4)
+		p_error("Maps name", "Maps name too short");
 }
 
 static void	check_r_c_maps(int fd)
@@ -55,7 +57,11 @@ void	check_maps(int argc, char *argv[])
 	if (fd == -1)
 		p_error("Opening the file", "Can't open the file given in argument");
 	check_empty(argv[1]);
+	close(fd);
+	fd = open(argv[1], O_RDONLY);
 	check_char_entry(fd);
+	close(fd);
+	open(argv[1], O_RDONLY);
 	check_r_c_maps(fd);
 	close(fd);
 }
